@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { resistsType } from '../../util/types';
 import { PercentageBar } from '../PercentageBar';
@@ -22,10 +22,39 @@ const ExplosiveResistanceMeter = ({ value }) => (
   <PercentageBar value={value} label="Explosive Resistance" fillColor="#d99800" />
 );
 
-export const ResistProfile = ({ resists: { armor, shield, structure } }) => (
-  <>
+const DISPLAY_TYPES = { EHP: 'EHP', HP: 'HP' };
+
+const getEHP = (hp, resists) => {
+  const averageResists = Object.values(resists).reduce((a, b) => a + b, 0) / 4;
+  return hp * (1 / (1 - (averageResists + Number.EPSILON) / 100));
+};
+
+export const ResistProfile = ({ hp, resists }) => {
+  const [displayType, setDisplayType] = useState(DISPLAY_TYPES.EHP);
+
+  const structureEHP = getEHP(hp.structure, resists.structure);
+  const armorEHP = getEHP(hp.armor, resists.armor);
+  const shieldEHP = getEHP(hp.shield, resists.shield);
+  const totalEHP = structureEHP + armorEHP + shieldEHP;
+  const totalRawHP = hp.structure + hp.armor + hp.shield;
+  const hpLabel =
+    displayType === DISPLAY_TYPES.EHP
+      ? `Effective HP: ${totalEHP.toFixed()}`
+      : `Raw HP: ${totalRawHP.toFixed()}`;
+
+  const toggleDisplayType = () => {
+    if (displayType === DISPLAY_TYPES.EHP) {
+      setDisplayType(DISPLAY_TYPES.HP);
+    } else {
+      setDisplayType(DISPLAY_TYPES.EHP);
+    }
+  };
+
+  return (
     <table>
-      <caption>Resistances</caption>
+      <caption>
+        Resistances <span className="detail">({hpLabel})</span>
+      </caption>
       <thead>
         <tr>
           <td></td>
@@ -41,6 +70,11 @@ export const ResistProfile = ({ resists: { armor, shield, structure } }) => (
           <th scope="col">
             <ResistProfileHeader label="Explosive" image="icons/explosive.png" />
           </th>
+          <th scope="col">
+            <button onClick={toggleDisplayType}>
+              {displayType === DISPLAY_TYPES.EHP ? DISPLAY_TYPES.EHP : DISPLAY_TYPES.HP}
+            </button>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -49,16 +83,19 @@ export const ResistProfile = ({ resists: { armor, shield, structure } }) => (
             <ResistProfileHeader label="Shield" image="icons/shield.png" />
           </th>
           <th>
-            <EMResistanceMeter value={shield.em} />
+            <EMResistanceMeter value={resists.shield.em} />
           </th>
           <th>
-            <ThermalResistanceMeter value={shield.thermal} />
+            <ThermalResistanceMeter value={resists.shield.thermal} />
           </th>
           <th>
-            <KineticResistanceMeter value={shield.kinetic} />
+            <KineticResistanceMeter value={resists.shield.kinetic} />
           </th>
           <th>
-            <ExplosiveResistanceMeter value={shield.explosive} />
+            <ExplosiveResistanceMeter value={resists.shield.explosive} />
+          </th>
+          <th className="detail">
+            {displayType === DISPLAY_TYPES.EHP ? shieldEHP.toFixed() : hp.shield}
           </th>
         </tr>
         <tr>
@@ -66,16 +103,19 @@ export const ResistProfile = ({ resists: { armor, shield, structure } }) => (
             <ResistProfileHeader label="Armor" image="icons/armor.png" />
           </th>
           <th>
-            <EMResistanceMeter value={armor.em} />
+            <EMResistanceMeter value={resists.armor.em} />
           </th>
           <th>
-            <ThermalResistanceMeter value={armor.thermal} />
+            <ThermalResistanceMeter value={resists.armor.thermal} />
           </th>
           <th>
-            <KineticResistanceMeter value={armor.kinetic} />
+            <KineticResistanceMeter value={resists.armor.kinetic} />
           </th>
           <th>
-            <ExplosiveResistanceMeter value={armor.explosive} />
+            <ExplosiveResistanceMeter value={resists.armor.explosive} />
+          </th>
+          <th className="detail">
+            {displayType === DISPLAY_TYPES.EHP ? armorEHP.toFixed() : hp.armor}
           </th>
         </tr>
         <tr>
@@ -83,26 +123,34 @@ export const ResistProfile = ({ resists: { armor, shield, structure } }) => (
             <ResistProfileHeader label="Structure" image="icons/structure.png" />
           </th>
           <th>
-            <EMResistanceMeter value={structure.em} />
+            <EMResistanceMeter value={resists.structure.em} />
           </th>
           <th>
-            <ThermalResistanceMeter value={structure.thermal} />
+            <ThermalResistanceMeter value={resists.structure.thermal} />
           </th>
           <th>
-            <KineticResistanceMeter value={structure.kinetic} />
+            <KineticResistanceMeter value={resists.structure.kinetic} />
           </th>
           <th>
-            <ExplosiveResistanceMeter value={structure.explosive} />
+            <ExplosiveResistanceMeter value={resists.structure.explosive} />
+          </th>
+          <th className="detail">
+            {displayType === DISPLAY_TYPES.EHP ? structureEHP.toFixed() : hp.structure}
           </th>
         </tr>
       </tbody>
     </table>
-  </>
-);
+  );
+};
 
 ResistProfile.defaultProps = {};
 
 ResistProfile.propTypes = {
+  hp: PropTypes.shape({
+    structure: PropTypes.number.isRequired,
+    armor: PropTypes.number.isRequired,
+    shield: PropTypes.number.isRequired,
+  }).isRequired,
   resists: PropTypes.shape({
     structure: resistsType.isRequired,
     armor: resistsType.isRequired,

@@ -11,6 +11,11 @@ const Template = args => <ResistProfile {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {
+  hp: {
+    structure: 1750,
+    armor: 1500,
+    shield: 2125,
+  },
   resists: {
     structure: {
       em: 33,
@@ -21,7 +26,7 @@ Primary.args = {
     armor: {
       em: 50,
       thermal: 45,
-      kinetic: 20,
+      kinetic: 25,
       explosive: 10,
     },
     shield: {

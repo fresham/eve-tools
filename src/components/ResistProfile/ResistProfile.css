@@ -1,7 +1,16 @@
+button {
+  margin: 0 0.25rem;
+}
+
 caption {
   text-align: left;
 }
 
 img {
   width: 1.5rem;
+}
+
+.detail {
+  font-size: 0.75rem;
+  font-weight: 400;
 }
