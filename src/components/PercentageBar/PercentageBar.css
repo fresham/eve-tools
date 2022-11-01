@@ -13,7 +13,7 @@
   color: #fff;
   content: var(--label);
   font-size: var(--font-size);
-  font-weight: lighter;
+  font-weight: normal;
   left: calc(50% - (var(--font-size) * 0.75));
   position: absolute;
   top: calc(50% - (var(--font-size) * 0.55));

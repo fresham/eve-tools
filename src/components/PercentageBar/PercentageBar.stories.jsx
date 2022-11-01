@@ -14,8 +14,4 @@ ResistMeter.args = {
   fillColor: '#0096D6',
   value: 50,
   label: 'EM Resist',
-  style: {
-    height: '2rem',
-    width: '4rem',
-  },
 };
