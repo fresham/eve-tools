@@ -1,0 +1,10 @@
+.ship-image {
+  display: block;
+  height: auto;
+  margin-bottom: 1rem;
+  width: 8rem;
+}
+
+.ship-select {
+  margin-bottom: 1rem;
+}

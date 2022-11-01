@@ -1,12 +1,12 @@
-button {
+.hp-display-toggle {
   margin: 0 0.25rem;
 }
 
-caption {
+.resist-table-caption {
   text-align: left;
 }
 
-img {
+.resist-table-icon {
   width: 1.5rem;
 }
 

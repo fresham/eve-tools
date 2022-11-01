@@ -1,4 +1,4 @@
-meter {
+.percentage-bar {
   --darken: 0.5;
   --font-size: 0.75rem;
   --height: 1.5rem;
@@ -9,7 +9,7 @@ meter {
   width: var(--width);
 }
 
-meter::after {
+.percentage-bar::after {
   color: #fff;
   content: var(--label);
   font-size: var(--font-size);
@@ -19,13 +19,13 @@ meter::after {
   top: calc(50% - (var(--font-size) * 0.55));
 }
 
-meter::-webkit-meter-bar {
+.percentage-bar::-webkit-meter-bar {
   background: linear-gradient(rgba(0, 0, 0, var(--darken)), rgba(0, 0, 0, var(--darken))),
     var(--fill);
   border-radius: 0;
   height: var(--height) !important;
 }
 
-meter::-webkit-meter-optimum-value {
+.percentage-bar::-webkit-meter-optimum-value {
   background: var(--fill);
 }

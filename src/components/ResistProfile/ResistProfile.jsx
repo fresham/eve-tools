@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { resistsType } from '../../util/types';
+import { hpsType, resistsType } from '../../util/types';
 import { PercentageBar } from '../PercentageBar';
 import { ResistProfileHeader } from './ResistProfileHeader';
 
@@ -52,7 +51,7 @@ export const ResistProfile = ({ hp, resists }) => {
 
   return (
     <table>
-      <caption>
+      <caption className="resist-table-caption">
         Resistances <span className="detail">({hpLabel})</span>
       </caption>
       <thead>
@@ -71,7 +70,7 @@ export const ResistProfile = ({ hp, resists }) => {
             <ResistProfileHeader label="Explosive" image="icons/explosive.png" />
           </th>
           <th scope="col">
-            <button onClick={toggleDisplayType}>
+            <button className="hp-display-toggle" onClick={toggleDisplayType}>
               {displayType === DISPLAY_TYPES.EHP ? DISPLAY_TYPES.EHP : DISPLAY_TYPES.HP}
             </button>
           </th>
@@ -146,14 +145,6 @@ export const ResistProfile = ({ hp, resists }) => {
 ResistProfile.defaultProps = {};
 
 ResistProfile.propTypes = {
-  hp: PropTypes.shape({
-    structure: PropTypes.number.isRequired,
-    armor: PropTypes.number.isRequired,
-    shield: PropTypes.number.isRequired,
-  }).isRequired,
-  resists: PropTypes.shape({
-    structure: resistsType.isRequired,
-    armor: resistsType.isRequired,
-    shield: resistsType.isRequired,
-  }).isRequired,
+  hp: hpsType,
+  resists: resistsType,
 };

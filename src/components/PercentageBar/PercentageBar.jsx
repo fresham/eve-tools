@@ -5,6 +5,7 @@ import './PercentageBar.css';
 
 export const PercentageBar = ({ fillColor, label, max = 100, min = 0, style, value }) => (
   <meter
+    className="percentage-bar"
     aria-label={label}
     min={min}
     max={max}
