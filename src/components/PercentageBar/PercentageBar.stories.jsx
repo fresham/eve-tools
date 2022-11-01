@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { PercentageBar } from './PercentageBar';
+import { PercentageBar } from './';
 
 export default {
   title: 'General/Percentage Bar',
