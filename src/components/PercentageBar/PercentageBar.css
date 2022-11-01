@@ -1,0 +1,26 @@
+meter {
+  --font-size: 0.75rem;
+
+  align-items: center;
+  display: inline-block;
+  position: relative;
+}
+
+meter::after {
+  color: #fff;
+  content: var(--label);
+  font-size: var(--font-size);
+  font-weight: lighter;
+  left: calc(50% - (var(--font-size) * 0.75));
+  position: absolute;
+  top: calc(50% - (var(--font-size) * 0.6));
+}
+
+meter::-webkit-meter-bar {
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), var(--fill);
+  border-radius: 0;
+}
+
+meter::-webkit-meter-optimum-value {
+  background: var(--fill);
+}
