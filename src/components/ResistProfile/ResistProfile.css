@@ -1,16 +1,16 @@
-.hp-display-toggle {
+.resist-profile__hp-display-toggle {
   margin: 0 0.25rem;
 }
 
-.resist-table-caption {
+.resist-profile__table-caption {
   text-align: left;
 }
 
-.resist-table-icon {
+.resist-profile__icon {
   width: 1.5rem;
 }
 
-.detail {
+.resist-profile__detail {
   font-size: 0.75rem;
   font-weight: 400;
 }

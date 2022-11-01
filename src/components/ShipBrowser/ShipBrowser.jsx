@@ -12,20 +12,23 @@ export const ShipBrowser = ({ ships }) => {
   const handleChange = event => setSelectedIndex(event.target.selectedIndex);
 
   return (
-    <div>
+    <div className="ship-browser">
       <select
-        className="ship-select"
+        className="ship-browser__ship-select"
         name="ship"
         value={ships[selectedIndex].id}
-        onChange={handleChange}
-      >
+        onChange={handleChange}>
         {ships.map(ship => (
           <option key={`${ship.id}-option`} value={ship.id}>
             {ship.name}
           </option>
         ))}
       </select>
-      <img className="ship-image" src={`ships/${selectedShip.id}.png`} alt={selectedShip.name} />
+      <img
+        className="ship-browser__ship-image"
+        src={`ships/${selectedShip.id}.png`}
+        alt={selectedShip.name}
+      />
       <ResistProfile hp={selectedShip.hp} resists={selectedShip.resists} />
     </div>
   );

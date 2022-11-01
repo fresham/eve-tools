@@ -50,9 +50,9 @@ export const ResistProfile = ({ hp, resists }) => {
   };
 
   return (
-    <table>
-      <caption className="resist-table-caption">
-        Resistances <span className="detail">({hpLabel})</span>
+    <table className="resist-profile">
+      <caption className="resist-profile__table-caption">
+        Resistances <span className="resist-profile__detail">({hpLabel})</span>
       </caption>
       <thead>
         <tr>
@@ -70,7 +70,7 @@ export const ResistProfile = ({ hp, resists }) => {
             <ResistProfileHeader label="Explosive" image="icons/explosive.png" />
           </th>
           <th scope="col">
-            <button className="hp-display-toggle" onClick={toggleDisplayType}>
+            <button className="resist-profile__hp-display-toggle" onClick={toggleDisplayType}>
               {displayType === DISPLAY_TYPES.EHP ? DISPLAY_TYPES.EHP : DISPLAY_TYPES.HP}
             </button>
           </th>
@@ -93,7 +93,7 @@ export const ResistProfile = ({ hp, resists }) => {
           <th>
             <ExplosiveResistanceMeter value={resists.shield.explosive} />
           </th>
-          <th className="detail">
+          <th className="resist-profile__detail">
             {displayType === DISPLAY_TYPES.EHP ? shieldEHP.toFixed() : hp.shield}
           </th>
         </tr>
@@ -113,7 +113,7 @@ export const ResistProfile = ({ hp, resists }) => {
           <th>
             <ExplosiveResistanceMeter value={resists.armor.explosive} />
           </th>
-          <th className="detail">
+          <th className="resist-profile__detail">
             {displayType === DISPLAY_TYPES.EHP ? armorEHP.toFixed() : hp.armor}
           </th>
         </tr>
@@ -133,7 +133,7 @@ export const ResistProfile = ({ hp, resists }) => {
           <th>
             <ExplosiveResistanceMeter value={resists.structure.explosive} />
           </th>
-          <th className="detail">
+          <th className="resist-profile__detail">
             {displayType === DISPLAY_TYPES.EHP ? structureEHP.toFixed() : hp.structure}
           </th>
         </tr>

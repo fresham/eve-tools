@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export const ResistProfileHeader = ({ image, label }) => (
-  <img className="resist-table-icon" src={image} alt={label} />
+  <img className="resist-profile__icon" src={image} alt={label} />
 );
 
 ResistProfileHeader.defaultProps = {};
