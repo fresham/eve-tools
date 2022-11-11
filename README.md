@@ -11,4 +11,5 @@ Displays the resist profiles for a limited number of ships.
 ## Contributing
 
 - use yarn for package management
+- use storybook for component development
 - enable prettier formatting in editor
