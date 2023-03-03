@@ -12,9 +12,10 @@
     "clean": "yarn clean:node_modules; yarn clean:next",
     "clean:node_modules": "rm -rf node_modules",
     "clean:next": "rm -rf .next",
-    "build-storybook": "build-storybook"
+    "load-sde-data": "yarn ts-node --skip-project scripts/load-sde-data.ts"
   },
   "dependencies": {
+    "@prisma/client": "4.6.1",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
@@ -37,6 +38,9 @@
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.3.0",
     "eslint-plugin-storybook": "^0.6.7",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "prisma": "^4.6.1",
+    "sqlite3": "^5.1.2",
+    "ts-node": "^10.9.1"
   }
 }

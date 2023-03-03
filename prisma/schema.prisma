@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Ship {
+  id                           Int        @id
+  name                         String     @unique
+  shipGroup                    ShipGroup? @relation(fields: [shipGroupId], references: [id])
+  shipGroupId                  Int?
+  structureEMResistance        Float?
+  structureThermalResistance   Float?
+  structureKineticResistance   Float?
+  structureExplosiveResistance Float?
+  armorEMResistance            Float?
+  armorThermalResistance       Float?
+  armorKineticResistance       Float?
+  armorExplosiveResistance     Float?
+  shieldEMResistance           Float?
+  shieldThermalResistance      Float?
+  shieldKineticResistance      Float?
+  shieldExplosiveResistance    Float?
+}
+
+model ShipGroup {
+  id    Int    @id
+  name  String @unique
+  ships Ship[]
+}
